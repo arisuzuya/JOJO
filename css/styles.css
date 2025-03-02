@@ -1,0 +1,255 @@
+/* General Styles and Variables */
+:root {
+    --primary-color: #ff278e;
+    --secondary-color: #ffeb3b;
+    --accent-color: #00b0ff;
+    --dark-color: #230046;
+    --light-color: #f3e5ff;
+    --border-thickness: 4px;
+    --border-radius: 12px;
+    --transition-time: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--dark-color), #190033);
+    color: var(--light-color);
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.imgur.com/M74jkdQ.png');
+    background-size: 200px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Skip to Main Content Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    z-index: 100;
+    transition: top 0.3s;
+    border-radius: 0 0 var(--border-radius) 0;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: none;
+    box-shadow: 0 0 0 3px var(--secondary-color);
+}
+
+/* Header and Navigation */
+header {
+    background: linear-gradient(90deg, var(--primary-color), #aa00ff);
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--secondary-color),
+        var(--secondary-color) 20px,
+        var(--accent-color) 20px,
+        var(--accent-color) 40px
+    );
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0 var(--dark-color), 
+                 5px 5px 0 rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    transform: skew(-5deg);
+}
+
+nav {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    flex: 1;
+    text-align: center;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    border: var(--border-thickness) solid transparent;
+    transition: all var(--transition-time);
+    transform: perspective(500px) rotateX(0deg);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    transform: perspective(500px) rotateX(10deg);
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+nav ul li a.active {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    border: var(--border-thickness) dashed var(--accent-color);
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+section {
+    margin-bottom: 50px;
+    padding: 25px;
+    background-color: rgba(35, 0, 70, 0.7);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-left: var(--border-thickness) solid var(--primary-color);
+    border-right: var(--border-thickness) solid var(--accent-color);
+    position: relative;
+}
+
+section::after {
+    content: "ゴゴゴゴ";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    opacity: 0.3;
+    transform: rotate(5deg);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+ul li, ol li {
+    margin-bottom: 8px;
+}
+
+/* Every odd list item styling with nth-child selector */
+ul li:nth-child(odd) {
+    color: var(--secondary-color);
+}
+
+/* Grid Layout */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Flex Layout */
+.parts-flex, .references-flex, .achievements-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.part, .reference, .achievement {
+    flex: 1 1 250px;
+    max-width: 300px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Image Styling */
+img {
+    max-width: 100%;
+    height: auto;
+    border: var(--border-thickness) solid var(--primary-color);
+    padding: 5px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-time), box-shadow var(--transition-time);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Apply different border-radius to every other image using nth-child */
+.reference:nth-child(even) img, 
+.part:nth-child(even) img,
+.achievement:nth-child(even
